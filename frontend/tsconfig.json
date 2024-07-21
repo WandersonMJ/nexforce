@@ -4,7 +4,6 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,7 +12,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -33,9 +32,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "next-env.d.ts",
-    "additional.d.ts"
+    "tests/**/*.tsx"
   ],
   "exclude": ["node_modules"]
 }

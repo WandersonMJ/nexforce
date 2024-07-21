@@ -2,16 +2,12 @@ import styled, { css } from 'styled-components';
 
 export const InputWrapper = styled.div`
   width: 100%;
-  max-width: 300px;
+  max-width: 350px;
 
   position: relative;
-
-  @media screen and (max-width: 440px) {
-    max-width: unset;
-  }
 `;
 
-export const StyledInput = styled.input`
+export const StyledInput = styled.input<{ haserror: boolean }>`
   padding: 10px 50px 10px 10px;
   border-radius: 5px;
   font-size: 16px;
@@ -23,4 +19,10 @@ export const StyledInput = styled.input`
     outline: none;
     border-color: ${({ theme }) => theme.colors.purple};
   }
+
+  ${({ haserror, theme }) =>
+    haserror &&
+    css`
+      border-color: ${theme.colors.red} !important;
+    `}
 `;

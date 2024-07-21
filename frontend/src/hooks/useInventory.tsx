@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import {
   fetchInventoryItems,
+  fetchInventoryItem,
   addItem,
   updateItem,
   deleteItem,
@@ -17,11 +18,15 @@ export interface InventoryItem {
 
 const useInventory = () => {
   const [inventoryItems, setInventoryItems] = useState<InventoryItem[]>([]);
+  const [inventoryItem, setInventoryItem] = useState<InventoryItem | null>(
+    null,
+  );
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const fetchItems = useCallback(async () => {
+    setError(null);
     setLoading(true);
     try {
       const response = await fetchInventoryItems();
@@ -34,7 +39,22 @@ const useInventory = () => {
     }
   }, []);
 
+  const fetchItem = useCallback(async (id: number) => {
+    setError(null);
+    setLoading(true);
+    try {
+      const response = await fetchInventoryItem(id);
+      setInventoryItem(response);
+      setError(null);
+    } catch (err) {
+      setError('Failed to fetch inventory item.');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   const handleAddItem = useCallback(async (item: Omit<InventoryItem, 'id'>) => {
+    setError(null);
     setLoading(true);
     try {
       const response = await addItem(item);
@@ -48,6 +68,7 @@ const useInventory = () => {
   }, []);
 
   const handleUpdateItem = useCallback(async (item: InventoryItem) => {
+    setError(null);
     setLoading(true);
     try {
       const response = await updateItem(item);
@@ -63,6 +84,7 @@ const useInventory = () => {
   }, []);
 
   const handleDeleteItem = useCallback(async (id: number) => {
+    setError(null);
     setLoading(true);
     try {
       await deleteItem(id);
@@ -76,6 +98,7 @@ const useInventory = () => {
   }, []);
 
   const handleDownloadReport = useCallback(async () => {
+    setError(null);
     setLoading(true);
     try {
       await downloadReport();
@@ -89,15 +112,18 @@ const useInventory = () => {
 
   return {
     inventoryItems,
+    inventoryItem,
     loading,
     error,
     searchTerm,
     functions: {
       fetchItems,
+      fetchItem,
       handleAddItem,
       handleUpdateItem,
       handleDeleteItem,
       handleDownloadReport,
+      setInventoryItem,
       setSearchTerm,
     },
   };

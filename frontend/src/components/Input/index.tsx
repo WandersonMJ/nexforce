@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, Controller, Control } from 'react-hook-form';
+import { Controller, Control } from 'react-hook-form';
 import * as S from './styles';
 
 interface InputProps {
@@ -9,6 +9,7 @@ interface InputProps {
   control: Control<any>;
   defaultValue: string;
   disabled: boolean;
+  haserror: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -18,6 +19,7 @@ const Input: React.FC<InputProps> = ({
   control,
   defaultValue,
   disabled,
+  haserror,
 }) => {
   return (
     <Controller
@@ -28,6 +30,7 @@ const Input: React.FC<InputProps> = ({
         <S.InputWrapper>
           <S.StyledInput
             {...field}
+            haserror={haserror}
             data-testid={dataTestId}
             placeholder={placeholder}
             disabled={disabled}

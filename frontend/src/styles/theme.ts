@@ -6,6 +6,8 @@ export const themeColors = {
   white: '#f2f2f2',
   Realwhite: '#FFF',
   gray: '#ccc',
+  green: '#91d568',
+  red: '#ff460f',
 };
 
 const theme = {

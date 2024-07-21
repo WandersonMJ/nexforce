@@ -11,7 +11,7 @@ export const fetchInventoryItems = async () => {
   return response.data;
 };
 
-export const fetchInventoryItem = async (id: string) => {
+export const fetchInventoryItem = async (id: number) => {
   const response = await api.get(`/inventory/${id}`);
   return response.data;
 };
