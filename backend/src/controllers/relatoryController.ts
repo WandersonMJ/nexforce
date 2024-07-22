@@ -13,11 +13,11 @@ export const callPythonScript = (_req: Request, res: Response) => {
 
       res.download(csvFilePath, 'inventory_report.csv', (err) => {
         if (err) {
-          res.status(500).send('Erro ao gerar o relatório.');
+          res.status(500).send('Error while generating CSV file.');
         }
       });
     });
   } catch (err) {
-    res.status(500).send('Erro ao executar o script.');
+    res.status(500).send('Error running the script.');
   }
 };
