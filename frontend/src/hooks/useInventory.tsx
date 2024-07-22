@@ -1,12 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
-import {
-  fetchInventoryItems,
-  fetchInventoryItem,
-  addItem,
-  updateItem,
-  deleteItem,
-  downloadReport,
-} from 'services/api';
+import * as inventoryApi from 'services/api';
 
 export interface InventoryItem {
   id: number;
@@ -25,11 +18,11 @@ const useInventory = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const fetchItems = useCallback(async () => {
+  const fetchItems = useCallback(async (data?: inventoryApi.dataFilter) => {
     setError(null);
     setLoading(true);
     try {
-      const response = await fetchInventoryItems();
+      const response = await inventoryApi.fetchInventoryItems(data);
       setInventoryItems(response);
       setError(null);
     } catch (err) {
@@ -43,7 +36,7 @@ const useInventory = () => {
     setError(null);
     setLoading(true);
     try {
-      const response = await fetchInventoryItem(id);
+      const response = await inventoryApi.fetchInventoryItem(id);
       setInventoryItem(response);
       setError(null);
     } catch (err) {
@@ -57,7 +50,7 @@ const useInventory = () => {
     setError(null);
     setLoading(true);
     try {
-      const response = await addItem(item);
+      const response = await inventoryApi.addItem(item);
       setInventoryItems((prevItems) => [...prevItems, response]);
       setError(null);
     } catch (err) {
@@ -71,7 +64,7 @@ const useInventory = () => {
     setError(null);
     setLoading(true);
     try {
-      const response = await updateItem(item);
+      const response = await inventoryApi.updateItem(item);
       setInventoryItems((prevItems) =>
         prevItems.map((i) => (i.id === item.id ? response : i)),
       );
@@ -87,7 +80,7 @@ const useInventory = () => {
     setError(null);
     setLoading(true);
     try {
-      await deleteItem(id);
+      await inventoryApi.deleteItem(id);
       setInventoryItems((prevItems) => prevItems.filter((i) => i.id !== id));
       setError(null);
     } catch (err) {
@@ -101,7 +94,7 @@ const useInventory = () => {
     setError(null);
     setLoading(true);
     try {
-      await downloadReport();
+      await inventoryApi.downloadReport();
       setError(null);
     } catch (err) {
       setError('Failed to download report.');

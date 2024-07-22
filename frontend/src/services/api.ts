@@ -6,8 +6,17 @@ export const api = axios.create({
   baseURL: 'http://localhost:3000',
 });
 
-export const fetchInventoryItems = async () => {
-  const response = await api.get('/inventory/');
+export interface dataFilter {
+  category: string;
+  minPrice: string;
+  maxPrice: string;
+}
+
+export const fetchInventoryItems = async (data?: dataFilter) => {
+  const response = await api.get('/inventory/', {
+    params: { ...data },
+  });
+
   return response.data;
 };
 
