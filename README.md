@@ -1,4 +1,14 @@
 # Nexforce Case Study - FullStack Application
+
+# Breve explicação:
+
+### Acabei fazendo no repositório pessoal, o link para o repositório é esse:
+### Para ver o histórico de commits e organização das branchs.
+
+    https://github.com/WandersonMJ/nexforce
+
+
+
 ## Descrição Geral
 
 Este projeto consiste em uma aplicação fullstack com um backend em Node.js e um frontend em React.js. A aplicação gerencia um inventário de registros e inclui uma integração com um serviço de análise em Python.
