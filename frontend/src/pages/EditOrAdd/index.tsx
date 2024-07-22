@@ -7,7 +7,9 @@ import * as S from './styles';
 const EditOrAdd: React.FC = () => {
   return (
     <S.Container>
-      <Form />
+      <S.Wrapper>
+        <Form />
+      </S.Wrapper>
     </S.Container>
   );
 };

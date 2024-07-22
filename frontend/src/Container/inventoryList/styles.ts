@@ -1,10 +1,13 @@
 import styled, { css } from 'styled-components';
+import Button from 'components/Button';
 
 export const Container = styled.div`
   width: 100%;
   height: 60%;
 
-  max-width: 508px;
+  @media screen and (max-width: 500px) {
+    padding: 0 14px 0 0;
+  }
 `;
 
 export const RowCard = styled.div`
@@ -18,8 +21,24 @@ export const RowCard = styled.div`
     flex-direction: column;
     justify-content: space-between;
     max-height: 100px;
-    max-width: 500px;
+    max-width: 470px;
+    width: 100%;
+
+    @media screen and (max-width: 500px) {
+      justify-content: flex-start;
+      max-height: 200px;
+      max-width: unset;
+      width: 100%;
+      padding: 14px 18px;
+    }
   `}
+`;
+
+export const StyledButton = styled(Button)`
+  @media screen and (max-width: 500px) {
+    max-width: 150px;
+    width: 100%;
+  }
 `;
 
 export const NameAndCategory = styled.div`
@@ -33,6 +52,10 @@ export const NameAndCategory = styled.div`
 
     span {
       font-weight: 600;
+    }
+
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
     }
 
     p:nth-child(1) {
@@ -62,4 +85,13 @@ export const ButtonWrapper = styled.div`
   gap: 6px;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 500px) {
+    right: unset;
+    top: unset;
+    bottom: 14px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 88%;
+  }
 `;

@@ -4,7 +4,6 @@ import { useInventoryContext } from 'hooks/useInventory';
 import { List, AutoSizer } from 'react-virtualized';
 import { GoPencil, GoTrash } from 'react-icons/go';
 import Loading from 'components/Loading';
-import Button from 'components/Button';
 import Modal from 'components/Modal';
 
 import * as S from './styles';
@@ -47,7 +46,7 @@ const InventoryComponent: React.FC = () => {
         </S.PriceAndStock>
 
         <S.ButtonWrapper>
-          <Button
+          <S.StyledButton
             size="small"
             color="green"
             onClick={() => {
@@ -56,14 +55,14 @@ const InventoryComponent: React.FC = () => {
             }}
           >
             <GoPencil size={16} />
-          </Button>
-          <Button
+          </S.StyledButton>
+          <S.StyledButton
             size="small"
             color="red"
             onClick={() => setInventoryId(item.id)}
           >
             <GoTrash size={16} />
-          </Button>
+          </S.StyledButton>
         </S.ButtonWrapper>
       </S.RowCard>
     );
@@ -78,10 +77,10 @@ const InventoryComponent: React.FC = () => {
       <AutoSizer>
         {({ height, width }: { height: number; width: number }) => (
           <List
-            width={width + 14}
+            width={width < 500 ? width + 14 : width}
             height={height}
             rowCount={inventoryItems.length}
-            rowHeight={105}
+            rowHeight={width < 500 ? 214 : 105}
             rowRenderer={rowRenderer}
           />
         )}

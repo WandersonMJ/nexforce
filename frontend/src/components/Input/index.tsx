@@ -20,6 +20,7 @@ const Input: React.FC<InputProps> = ({
   defaultValue,
   disabled,
   haserror,
+  ...rest
 }) => {
   return (
     <Controller
@@ -27,7 +28,7 @@ const Input: React.FC<InputProps> = ({
       control={control}
       defaultValue={defaultValue}
       render={({ field }: any) => (
-        <S.InputWrapper>
+        <S.InputWrapper {...rest}>
           <S.StyledInput
             {...field}
             haserror={haserror}

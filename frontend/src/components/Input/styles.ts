@@ -8,7 +8,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const StyledInput = styled.input<{ haserror: boolean }>`
-  padding: 10px 50px 10px 10px;
+  padding: 10px;
   border-radius: 5px;
   font-size: 16px;
   display: flex;

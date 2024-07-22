@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useInventoryContext, InventoryItem } from 'hooks/useInventory';
 import { inventorySchema } from 'schemas/inventorySchema';
 
 import Input from 'components/Input';
-import Button from 'components/Button';
 
 import * as S from './styles';
 
 const InventoryForm: React.FC = () => {
+  const navigate = useNavigate();
   const { inventoryId } = useParams<{ inventoryId: string }>();
 
   const { inventoryItem, functions, error, loading } = useInventoryContext();
@@ -48,6 +48,7 @@ const InventoryForm: React.FC = () => {
   const onSubmitHandler = async (data: Omit<InventoryItem, 'id'>) => {
     if (defaultValues && defaultValues?.id) {
       await functions.handleUpdateItem({ ...data, id: defaultValues?.id });
+      navigate('/')
     } else {
       await functions.handleAddItem(data);
       reset();
@@ -90,9 +91,9 @@ const InventoryForm: React.FC = () => {
         disabled={false}
         haserror={!!errors.stock}
       />
-      <Button type="submit" size="medium" color="green">
+      <S.StyledButton type="submit" size="medium" color="green">
         {defaultValues ? 'Update' : 'Create'} Inventory
-      </Button>
+      </S.StyledButton>
     </S.FormContainer>
   );
 };

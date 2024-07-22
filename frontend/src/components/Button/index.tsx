@@ -17,6 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   type,
   children,
   onClick,
+  ...rest
 }) => {
   return (
     <S.Container
@@ -25,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
       color={color}
       size={size}
       onClick={onClick}
+      {...rest}
     >
       {children}
     </S.Container>

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import Button from 'components/Button';
 
 export const FormContainer = styled.form`
   width: 100%;
-  max-width: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,4 +13,9 @@ export const FormContainer = styled.form`
 export const Error = styled.div`
   font-size: 18px;
   color: ${({ theme }) => theme.colors.white};
+`;
+
+export const StyledButton = styled(Button)`
+  margin-top: 14px;
+  max-width: 350px;
 `;
