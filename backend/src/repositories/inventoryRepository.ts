@@ -1,7 +1,29 @@
+import { Op } from 'sequelize';
 import Inventory, { InventoryCreationAttributes } from 'models/inventory';
 
-export const getAllItems = async () => {
-  return await Inventory.findAll();
+export interface FilterOptions {
+  category?: string;
+  minPrice?: number;
+  maxPrice?: number;
+}
+
+export const getAllItems = async (filters: FilterOptions = {}) => {
+  const { category, minPrice, maxPrice } = filters;
+  const where: any = {};
+
+  if (category) {
+    where.category = category;
+  }
+
+  if (minPrice !== undefined) {
+    where.price = { ...where.price, [Op.gte]: minPrice };
+  }
+
+  if (maxPrice !== undefined) {
+    where.price = { ...where.price, [Op.lte]: maxPrice };
+  }
+
+  return await Inventory.findAll({ where });
 };
 
 export const getItemById = async (id: number) => {

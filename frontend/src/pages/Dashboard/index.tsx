@@ -17,8 +17,10 @@ const Dashboard: React.FC = () => {
 
   return (
     <S.Container>
-      <Options />
-      <List />
+      <S.Wrapper>
+        <Options />
+        <List />
+      </S.Wrapper>
     </S.Container>
   );
 };

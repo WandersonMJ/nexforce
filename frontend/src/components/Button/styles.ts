@@ -39,6 +39,7 @@ export const Container = styled.button<Omit<ButtonProps, 'children'>>`
       height: fit-content;
       width: fit-content;
       padding: 4px 14px;
+      height: 35px;
     `}
 
     ${size === 'medium' &&

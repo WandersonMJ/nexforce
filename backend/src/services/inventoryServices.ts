@@ -1,8 +1,10 @@
 import * as inventoryRepository from 'repositories/inventoryRepository';
 import { InventoryCreationAttributes } from 'models/inventory';
 
-export const getAllItems = async () => {
-  return await inventoryRepository.getAllItems();
+export const getAllItems = async (
+  filters: inventoryRepository.FilterOptions = {},
+) => {
+  return await inventoryRepository.getAllItems(filters);
 };
 
 export const getItemById = async (id: number) => {
