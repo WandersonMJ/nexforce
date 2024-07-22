@@ -8,14 +8,14 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "config/*": ["src/config/*"],
-      "models/*": ["src/models/*"],
-      "controllers/*": ["src/controllers/*"],
-      "repositories/*": ["src/repositories/*"],
-      "services/*": ["src/services/*"],
-      "routes/*": ["src/routes/*"]
+      "config/*": ["config/*"],
+      "models/*": ["models/*"],
+      "controllers/*": ["controllers/*"],
+      "repositories/*": ["repositories/*"],
+      "services/*": ["services/*"],
+      "routes/*": ["routes/*"]
     }
   },
   "include": ["src"],
